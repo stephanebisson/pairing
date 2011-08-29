@@ -12,11 +12,11 @@
             <tr>
                 <td>
                     <textarea name="code" value="{{code}}"></textarea><br/>
-                    <button name="run" ng:click="runTests()">Run</button>
+                    <button name="run" ng:click="runTests()">Run Tests</button>
                 </td>
                 <td>
                     <div ng:repeat="test in tests">
-                        {{test.content}}
+                        {{test.doc.content}}
                         <hr/>
                     </div>
                 </td>

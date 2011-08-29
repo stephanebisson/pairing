@@ -1,8 +1,8 @@
 DONE 
 - have a running angular app
+- view all tc from couch
 
 TODO
-- view all tc from couch
 - write some js in the ui
 - run a test again the code written in the ui
 - show the result of the tc in the ui
