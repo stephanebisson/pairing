@@ -1,0 +1,20 @@
+DONE 
+- have a running angular app
+
+TODO
+- view all tc from couch
+- write some js in the ui
+- run a test again the code written in the ui
+- show the result of the tc in the ui
+- reword the UI to make it nice
+- show the tc one at a time
+- have a real js editor in the browser
+- compute test coverage
+- isolate test execution (make it impossible to mess with the page with code)
+- run the tests in node.js
+- show only the tcs related to a given story
+- show version history (on good states only, where all visible tests pass)
+- record solution in couch
+- view other people solution
+- p2p
+- test-only development

@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>pairing</title>
+        <script type="text/javascript" src="http://code.angularjs.org/angular-0.9.12.js" ng:autobind></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+        <link rel="stylesheet" type="text/css" href="app.css">
+    </head>
+    <body ng:controller="mainController">
+        <h1>{{title}}</h1>
+        <table width="90%">
+            <tr>
+                <td>
+                    <textarea name="code" value="{{code}}"></textarea><br/>
+                    <button name="run" ng:click="runTests()">Run</button>
+                </td>
+                <td>
+                    <div ng:repeat="test in tests">
+                        {{test.content}}
+                        <hr/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
