@@ -16,7 +16,9 @@ mainController = function($xhr){
     });
     
     this.runTests = function(){
-        this.tests.push({content: 'and yet another one'});
+        angular.forEach(this.tests, function(test){
+          test.success = !test.success;
+        });
     };
 };
 
