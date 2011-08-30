@@ -4,9 +4,9 @@ DONE
 
 TODO
 - write some js in the ui
-- run a test again the code written in the ui
-- show the result of the tc in the ui
-- reword the UI to make it nice
+- run a test against the code written in the ui
+- show the results of the tc in the ui
+- rework the UI to make it nice
 - show the tc one at a time
 - have a real js editor in the browser
 - compute test coverage
