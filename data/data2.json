@@ -1,0 +1,3 @@
+{
+    "content" : "It('should sub', function(){ \n\tExpect(MyMath.sub(3,2).ToBe(1)); \n});"
+}
