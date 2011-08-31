@@ -1,3 +1,7 @@
 TDD / Pairing game (geek!)
 
-Depends on couchdb, angular, jquery
+References
+    couchdb
+    angular: http://angularjs.org
+    jquery: http://jquery.com/
+    editarea: http://www.cdolivet.com/editarea/

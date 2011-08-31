@@ -14,6 +14,18 @@
         <!-- <script type="text/javascript" src="http://jush.sourceforge.net/jush.js"></script>
         <link rel="stylesheet" type="text/css" href="http://jush.sourceforge.net/jush.css"> -->
                 
+        <script language="javascript" type="text/javascript" src="lib/edit_area/edit_area_full.js"></script>
+        <script language="javascript" type="text/javascript">
+            editAreaLoader.init({
+                id : "code",
+                syntax: "js",
+                language: 'en',
+                start_highlight: true,
+                allow_toggle: false,
+                toolbar: 'search, |, undo, redo, |, select_font,|, word_wrap, |, help'
+            });
+        </script>
+        
         <script type="text/javascript" src="app.js"></script>
         <link rel="stylesheet" type="text/css" href="app.css">
     </head>
@@ -22,7 +34,8 @@
         <table width="90%">
             <tr>
                 <td>
-                    <textarea name="code" value="{{code}}" class="javascript-source-code"></textarea><br/>
+                    <textarea name="code" id="code" value="{{code}}" class="javascript-source-code"></textarea>
+                    <br/><br/>
                     <button name="run" ng:click="runTests()">Run Tests</button>
                 </td>
                 <td>
@@ -35,4 +48,5 @@
                 </td>
             </tr>
         </table>
+    </body>
 </html>

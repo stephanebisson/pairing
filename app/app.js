@@ -2,7 +2,7 @@
 mainController = function($xhr){
     this.title = 'Write some code and try to make the tests green!';
     
-    this.code = 'some code here\n\nand then some more';
+    this.code = 'var Math = {\n\tadd: function(a, b) {\n\t\treturn a + b;\n\t},\n\tsub: function(a, b) {\n\t\treturn a - b;\n\t}\n};';
     
     this.tests = [];
 

@@ -1,9 +1,9 @@
 DONE 
 - have a running angular app
 - view all tc from couch
+- write some js in the ui (with color coding)
 
 TODO
-- write some js in the ui
 - run a test against the code written in the ui
 - show the results of the tc in the ui
 - rework the UI to make it nice
