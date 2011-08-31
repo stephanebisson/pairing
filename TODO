@@ -2,13 +2,13 @@ DONE
 - have a running angular app
 - view all tc from couch
 - write some js in the ui (with color coding)
+- have a real js editor in the browser
 
 TODO
 - run a test against the code written in the ui
 - show the results of the tc in the ui
 - rework the UI to make it nice
 - show the tc one at a time
-- have a real js editor in the browser
 - compute test coverage
 - isolate test execution (make it impossible to mess with the page with code)
 - run the tests in node.js
