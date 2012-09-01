@@ -2,48 +2,24 @@
     <head>
         <title>pairing</title>
         
-        <script type="text/javascript" src="http://code.angularjs.org/angular-0.9.12.js" ng:autobind></script>
-
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
-
-        <!-- <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
-        <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
-        <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
-        <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js" type="text/javascript"></script> -->
-        
-        <script language="javascript" type="text/javascript" src="lib/edit_area/edit_area_full.js"></script>
-        <script language="javascript" type="text/javascript">
-            editAreaLoader.init({
-                id : "code",
-                syntax: "js",
-                language: 'en',
-                start_highlight: true,
-                allow_toggle: false,
-                toolbar: 'search, |, undo, redo, |, select_font,|, word_wrap, |, help'
-            });
-        </script>
-        
+        <script type="text/javascript" src="lib/angular.js"></script>
         <script type="text/javascript" src="app.js"></script>
         <link rel="stylesheet" type="text/css" href="app.css">
     </head>
-    <body ng:controller="mainController">
+    <body ng-app="app" ng-controller="mainController">
+		<div class="the-boss">
         <h1>{{title}}</h1>
-        <table width="90%">
-            <tr>
-                <td>
-                    <textarea name="code" id="code" value="{{code}}" class="javascript-source-code"></textarea>
-                    <br/><br/>
-                    <button name="run" ng:click="runTests()">Run Tests</button>
-                </td>
-                <td>
-                    <div ng:repeat="test in tests">
-                        <pre>{{test.doc.content}}</pre>
-                        <br/>
-                        Result: {{test.success}}
-                        <hr/>
-                    </div>
-                </td>
-            </tr>
-        </table>
+		<div class="comfy code-editor">
+			<h3>the code</h3>
+			<button ng-click="run()">run</button>
+			<textarea>some code</textarea>
+		</div>
+		<div class="comfy tests">
+			<h3>the tests</h3>
+			<div class="test" ng-repeat="test in testsInPlay" ng-class="{'pass': test.pass, 'fail': test.fail}" >
+				{{test.content}}
+			</div>
+		</div>
+		</div>
     </body>
 </html>

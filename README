@@ -1,5 +1,11 @@
 TDD / Pairing game (geek!)
 
+Rules:
+	faster = more points
+	all current tests pass = more points
+	some/all tests fail = less points
+	higher coverage = more points
+
 References
     couchdb
     angular: http://angularjs.org
