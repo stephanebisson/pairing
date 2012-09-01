@@ -1,5 +1,0 @@
-source 'http://rubygems.org'
-
-gem 'taza', :git => 'git@github.com:hammernight/taza.git'
-gem 'watir-webdriver'
-
