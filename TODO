@@ -7,6 +7,7 @@ DONE
 - show the tc one at a time, add one when they all pass
 - being able to win the game
 - show version history (good states only, where all visible tests pass)
+- do not create useless version
 
 TODO
 - navigate through history

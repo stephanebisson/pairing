@@ -74,7 +74,6 @@ app.controller('mainController', function($scope){
 
     $scope.run = function() {
         runTests($scope.code, $scope.testsInPlay, function(allpass){
-            $scope.versions.push($scope.currentVersion = newVersion());
             if (allpass) {
                 if ($scope.level === $scope.tests.length) {
                     $scope.title = 'You did it! Prafo!!'
@@ -83,6 +82,11 @@ app.controller('mainController', function($scope){
                     viewOneMoreTest();
                 }
             }
+            var nv = newVersion(), ov = $scope.currentVersion;
+            if (!ov || (nv.code != ov.code || nv.level > ov.level)) {
+                $scope.versions.push($scope.currentVersion = nv);
+            }
+            
             $scope.$apply();
         });
     };
