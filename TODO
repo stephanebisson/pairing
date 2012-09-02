@@ -8,12 +8,16 @@ DONE
 - being able to win the game
 
 TODO
+- compute points (pass/fail, coverage)
+- show version history (on good states only, where all visible tests pass)
+- have a real js editor in the browser
+
 - choose a challenge, show only the tcs related to a given challenges
+
 - view all tc from couch
 - record solution in couch
-- have a real js editor in the browser
-- compute points (pass/fail, coverage)
+
 - isolate test execution (make it impossible to mess with the page with code)
-- choose a challenge, show only the tcs related to a given challenges
-- show version history (on good states only, where all visible tests pass)
+
 - view other people solution
+- be social
