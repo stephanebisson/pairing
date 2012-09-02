@@ -9,7 +9,6 @@ var runTests = function(code, tests, s){
                 t.result = results.specs_[i].results_.failedCount === 0;
                 t.msg = t.result ? null : results.specs_[i].results_.items_[0].message;
             }
-//            console.log('done!', results.specs_);
             s.$apply();
         },
     };
@@ -29,6 +28,12 @@ var runTests = function(code, tests, s){
 };
 
 app.controller('mainController', function($scope){
+    document.onkeypress = function(e){
+        if (e.ctrlKey && e.charCode === 18) {
+            $scope.run();
+        }
+    };
+    
     $scope.title = 'Write some code and try to make the tests green!';
 
     $scope.code = "var plus = function(a, b){ return a+b;};";
@@ -37,7 +42,7 @@ app.controller('mainController', function($scope){
         {seq: 1, content: 'expect(plus(1, 2)).toEqual(3);'},
         {seq: 2, content: 'expect(plus(-2, 7)).toEqual(5);'}];
         
-    $scope.level = 2;
+    $scope.level = 1;
     
     var updateVisibleTests = function(){
         $scope.testsInPlay = $scope.tests.slice(0, $scope.level);

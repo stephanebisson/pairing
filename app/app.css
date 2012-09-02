@@ -37,7 +37,7 @@
     padding: 10px;
 }
 
-.pass {border-color: green;}
+.pass {background: green;}
 .fail {border-color: red;}
 
 .error-msg {color: red;}
