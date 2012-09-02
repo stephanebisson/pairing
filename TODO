@@ -8,9 +8,9 @@ DONE
 - being able to win the game
 - show version history (good states only, where all visible tests pass)
 - do not create useless version
+- navigate through history
 
 TODO
-- navigate through history
 - compute points (pass/fail, coverage)
 - have a real js editor in the browser
 

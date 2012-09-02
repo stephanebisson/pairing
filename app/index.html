@@ -14,10 +14,11 @@
 			<div class="the-bar">
 				<h3>the code</h3>
 				<button ng-click="run()">run (ctrl+r)</button>
+				<span ng-show="versions.length > 0">History </span>
 				<select ng-show="versions.length > 0" 
 					ng-model="currentVersion" 
 					ng-change="restoreVersion()"
-					ng-options="v.ts + ' (level: '+v.level+')' for v in versions"></select>
+					ng-options="v.ts + ' ('+v.level+' tests)' for v in versions"></select>
 			</div>
 			<textarea ng-model="code"></textarea>
 		</div>
