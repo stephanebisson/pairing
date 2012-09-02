@@ -16,6 +16,7 @@
 				<button ng-click="run()">run (ctrl+r)</button>
 				<select ng-show="versions.length > 0" 
 					ng-model="currentVersion" 
+					ng-change="restoreVersion()"
 					ng-options="v.ts + ' (level: '+v.level+')' for v in versions"></select>
 			</div>
 			<textarea ng-model="code"></textarea>

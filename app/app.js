@@ -26,8 +26,15 @@ var runTests = function(code, tests, callback){
             it (name, f);
         });
     });
-    eval(code);
-    suite.execute(angular.noop);
+    try { 
+        eval(code);
+        suite.execute(angular.noop);
+    } catch (e) {
+        angular.forEach(tests, function(t){
+            t.result = false;
+            t.msg = e;
+        });
+    }
 };
 
 app.controller('mainController', function($scope){
@@ -98,6 +105,12 @@ app.controller('mainController', function($scope){
             return 'fail';
         }
     }
+    
+    $scope.restoreVersion = function(){
+        $scope.code = $scope.currentVersion.code;
+        $scope.level = $scope.currentVersion.level;
+        $scope.testsInPlay = $scope.tests.slice(0, $scope.level);
+    };
     
     viewOneMoreTest();
 });
