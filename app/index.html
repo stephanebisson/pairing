@@ -3,8 +3,9 @@
         <title>pairing</title>
         
         <script type="text/javascript" src="lib/angular.js"></script>
+		<script type="text/javascript" src="lib/jasmine/jasmine.js"></script>
         <script type="text/javascript" src="app.js"></script>
-        <link rel="stylesheet" type="text/css" href="app.css">
+        <link rel="stylesheet" type="text/css" href="app.css" />
     </head>
     <body ng-app="app" ng-controller="mainController">
 		<div class="the-boss">
@@ -12,12 +13,13 @@
 		<div class="comfy code-editor">
 			<h3>the code</h3>
 			<button ng-click="run()">run</button>
-			<textarea>some code</textarea>
+			<textarea ng-model="code"></textarea>
 		</div>
 		<div class="comfy tests">
 			<h3>the tests</h3>
-			<div class="test" ng-repeat="test in testsInPlay" ng-class="{'pass': test.pass, 'fail': test.fail}" >
+			<div class="test" ng-repeat="test in testsInPlay" ng-class="getClass(test)" >
 				{{test.content}}
+				<br/><span class="error-msg">{{test.msg}}</span>
 			</div>
 		</div>
 		</div>
