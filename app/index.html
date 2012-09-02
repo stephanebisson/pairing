@@ -11,8 +11,13 @@
 		<div class="the-boss">
         <h1>{{title}}</h1>
 		<div class="comfy code-editor">
-			<h3>the code</h3>
-			<button ng-click="run()">run (ctrl+r)</button>
+			<div class="the-bar">
+				<h3>the code</h3>
+				<button ng-click="run()">run (ctrl+r)</button>
+				<select ng-show="versions.length > 0" 
+					ng-model="currentVersion" 
+					ng-options="v.ts + ' (level: '+v.level+')' for v in versions"></select>
+			</div>
 			<textarea ng-model="code"></textarea>
 		</div>
 		<div class="comfy tests">

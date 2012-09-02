@@ -38,6 +38,8 @@ app.controller('mainController', function($scope){
         }
     };
     
+    $scope.versions = [];
+    
     $scope.title = 'Write some code and try to make the tests green!';
 
     $scope.code = "var plus = function(a, b){ return a+b;};";
@@ -52,9 +54,27 @@ app.controller('mainController', function($scope){
         $scope.level++;
         $scope.testsInPlay = $scope.tests.slice(0, $scope.level);
     };
+    
+    var format = function(nb){
+        return nb < 10 ? '0' + nb : nb;
+    };
+    
+    var getTime = function(){
+        var d = new Date();
+        return d.getHours()+':'+format(d.getMinutes())+':'+format(d.getSeconds());
+    };
+    
+    var newVersion = function(){
+        return {
+            ts: getTime(),
+            code: $scope.code, 
+            level: $scope.level
+        };
+    };
 
     $scope.run = function() {
         runTests($scope.code, $scope.testsInPlay, function(allpass){
+            $scope.versions.push($scope.currentVersion = newVersion());
             if (allpass) {
                 if ($scope.level === $scope.tests.length) {
                     $scope.title = 'You did it! Prafo!!'
