@@ -1,15 +1,18 @@
 
 var app = angular.module('app', []);
 
-var runTests = function(code, tests, s){
+var runTests = function(code, tests, callback){
     var myReporter = {
         reportSuiteResults: function(results){
+            var allpass = true;
             for (var i=0; i<tests.length; i++) {
                 var t = tests[i];
                 t.result = results.specs_[i].results_.failedCount === 0;
                 t.msg = t.result ? null : results.specs_[i].results_.items_[0].message;
+                
+                allpass = allpass && t.result;
             }
-            s.$apply();
+            callback(allpass);
         },
     };
     myReporter.reportSpecStarting = angular.noop;
@@ -30,6 +33,7 @@ var runTests = function(code, tests, s){
 app.controller('mainController', function($scope){
     document.onkeypress = function(e){
         if (e.ctrlKey && e.charCode === 18) {
+            console.log('run tests');
             $scope.run();
         }
     };
@@ -42,14 +46,25 @@ app.controller('mainController', function($scope){
         {seq: 1, content: 'expect(plus(1, 2)).toEqual(3);'},
         {seq: 2, content: 'expect(plus(-2, 7)).toEqual(5);'}];
         
-    $scope.level = 1;
+    $scope.level = 0;
     
-    var updateVisibleTests = function(){
+    var viewOneMoreTest = function(){
+        $scope.level++;
         $scope.testsInPlay = $scope.tests.slice(0, $scope.level);
     };
 
     $scope.run = function() {
-        runTests($scope.code, $scope.testsInPlay, $scope);
+        runTests($scope.code, $scope.testsInPlay, function(allpass){
+            if (allpass) {
+                if ($scope.level === $scope.tests.length) {
+                    $scope.title = 'You did it! Prafo!!'
+                }
+                else {
+                    viewOneMoreTest();
+                }
+            }
+            $scope.$apply();
+        });
     };
     
     $scope.getClass = function(t){
@@ -60,24 +75,5 @@ app.controller('mainController', function($scope){
         }
     }
     
-    updateVisibleTests();
+    viewOneMoreTest();
 });
-
-// misc code
-
-// 
-// var env = jasmine.getEnv();
-// env.describe('my feature', function(){ it('behaves', function(){ expect(2).toBe(4); }); });
-// suite.execute(function(){ console.log('done!', arguments); });
-// var functionNames = [
-//     "reportRunnerStarting",
-//     "reportRunnerResults",
-//     "reportSuiteResults",
-//     "reportSpecStarting",
-//     "reportSpecResults",
-//     "log"
-//   ];
-//  var r = {};
-// angular.forEach(functionNames, function(n){ r[n] = function(){console.log(n, arguments);} });
-// env.reporter = r;
-

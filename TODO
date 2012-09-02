@@ -4,10 +4,10 @@ DONE
 - show the results of the tc in the ui
 - write some js in the ui
 - keyboard shortcut to run the tests
+- show the tc one at a time, add one when they all pass
+- being able to win the game
 
 TODO
-
-- show the tc one at a time, add one when they all pass
 - choose a challenge, show only the tcs related to a given challenges
 - view all tc from couch
 - record solution in couch
