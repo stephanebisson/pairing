@@ -1,34 +1,46 @@
 <html>
     <head>
         <title>pairing</title>
-        
+
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="app.css" />
+		
+        <script type="text/javascript" src="lib/jquery.js"></script>
+        <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>        
         <script type="text/javascript" src="lib/angular.js"></script>
 		<script type="text/javascript" src="lib/jasmine/jasmine.js"></script>
         <script type="text/javascript" src="app.js"></script>
-        <link rel="stylesheet" type="text/css" href="app.css" />
     </head>
     <body ng-app="app" ng-controller="mainController">
-		<div class="the-boss">
-        <h1>{{title}}</h1>
-		<div class="comfy code-editor">
-			<div class="the-bar">
-				<h3>the code</h3>
-				<button ng-click="run()">run (ctrl+r)</button>
-				<span ng-show="versions.length > 0">History </span>
-				<select ng-show="versions.length > 0" 
-					ng-model="currentVersion" 
-					ng-change="restoreVersion()"
-					ng-options="v.ts + ' ('+v.level+' tests)' for v in versions"></select>
+		<div class="container">
+			<h1>{{title}}</h1>
+			<hr />
+			<div class="row-fuid">
+				<div class="span2">
+					<h3>history</h3>
+					<div class="well" 
+						ng-repeat="v in versions" 
+						ng-class="getVersionClass(v)" 
+						ng-click="selectVersion(v)">
+						{{v.ts}} ({{v.level}} tests)
+					</div>
+				</div>
+				<div class="span5">
+					<h3>code</h3>
+					<button ng-click="run()">run (ctrl+r)</button>
+					<textarea id="code" ng-model="code" class="code" rows="12"></textarea>
+				</div>
+				<div class="span4">
+					<h3>tests</h3>
+					<div class="test well" 
+						ng-repeat="test in testsInPlay" 
+						ng-class="getClass(test)" >
+						{{test.content}}
+						<br/><span class="error-msg">{{test.msg}}</span>
+					</div>
+				</div>
 			</div>
-			<textarea ng-model="code"></textarea>
 		</div>
-		<div class="comfy tests">
-			<h3>the tests</h3>
-			<div class="test" ng-repeat="test in testsInPlay" ng-class="getClass(test)" >
-				{{test.content}}
-				<br/><span class="error-msg">{{test.msg}}</span>
-			</div>
-		</div>
-		</div>
-    </body>
+	</body>
 </html>

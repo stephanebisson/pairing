@@ -1,43 +1,12 @@
-.the-boss {
+.code {
     width: 100%;
-    height: 300px;
-    margin: auto;
-    text-align: center;
-}
-
-.comfy {
-    margin: 20px;
-    padding: 20px;
-    text-align: left;
-}
-
-.code-editor {
-    width: 50%;
-    height: 100%;
-    display: inline-block;
-    background: orange;
-}
-
-.code-editor textarea {
-    width: 100%;
-    height: 100%;
-}
-
-.tests {
-    width: 30%;
-    height: 100%;
-    display: inline-block;
-    border: solid 2px teal;
-}
-
-.test {
-    border: solid 2px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
+    
 }
 
 .pass {background: green;}
 .fail {border-color: red;}
 
 .error-msg {color: red;}
+
+.selected {background: yellow;}
+.not-selected {background: white;}

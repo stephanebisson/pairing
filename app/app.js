@@ -106,7 +106,13 @@ app.controller('mainController', function($scope){
         }
     }
     
-    $scope.restoreVersion = function(){
+    $scope.getVersionClass = function(version){
+        return version === $scope.currentVersion ? 
+            'selected' : 'not-selected';
+    };
+    
+    $scope.selectVersion = function(version){
+        $scope.currentVersion = version;
         $scope.code = $scope.currentVersion.code;
         $scope.level = $scope.currentVersion.level;
         $scope.testsInPlay = $scope.tests.slice(0, $scope.level);

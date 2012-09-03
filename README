@@ -1,13 +1,11 @@
-TDD / Pairing game (geek!)
+TDD Challenge
 
-Rules:
-	faster = more points
-	all current tests pass = more points
-	some/all tests fail = less points
-	higher coverage = more points
-
+Rules: 
+	- write some code to make the tests pass
+	- all green -> more points
+	- no useless code -> more points
+	
 References
-    couchdb
     angular: http://angularjs.org
     jquery: http://jquery.com/
     editarea: http://www.cdolivet.com/editarea/
