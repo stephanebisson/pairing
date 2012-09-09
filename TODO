@@ -13,6 +13,8 @@ DONE
 TODO
 - add some test
 
+- add some data (create some interesting tdd challenges)
+
 - compute points (pass/fail, coverage)
 - choose a challenge, show only the tcs related to a given challenges
 - isolate test execution (make it impossible to mess with the page with code)
