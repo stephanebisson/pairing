@@ -1,46 +1,68 @@
 
 var app = angular.module('app', []);
 
-var runTests = function(code, tests, callback){
-    var myReporter = {
-        reportSuiteResults: function(results){
-            var allpass = true;
-            for (var i=0; i<tests.length; i++) {
-                var t = tests[i];
-                t.result = results.specs_[i].results_.failedCount === 0;
-                t.msg = t.result ? null : results.specs_[i].results_.items_[0].message;
-                
-                allpass = allpass && t.result;
+app.factory('jasmineTestRunner', function(){
+    
+    var createReporter = function(){
+        var results;
+        return {
+            reportSpecStarting: angular.noop,
+            reportSpecResults: angular.noop,
+            reportSuiteResults: function(raw){
+                var r = {};
+                angular.forEach(results.specs_, function(spec){
+                    
+                });
+            },
+            getResults: function(){
+                return results;
             }
-            callback(allpass);
-        },
+        };
     };
-    myReporter.reportSpecStarting = angular.noop;
-    myReporter.reportSpecResults = angular.noop;
-    var env = jasmine.getEnv();
-    env.reporter = myReporter;
-    var suite = env.describe('d', function(){
-        angular.forEach(tests, function(t){             
-            var name = 't'+t.seq;
-            var f = eval('function f(){' + t.content + '} f');
-            it (name, f);
-        });
-    });
-    try { 
-        eval(code);
-        suite.execute(angular.noop);
-    } catch (e) {
-        angular.forEach(tests, function(t){
-            t.result = false;
-            t.msg = e;
-        });
-    }
-};
+    
+    return function(code, tests, callback){
+        var myReporter = {
+            reportSuiteResults: function(results){
+                console.log('results', results);
+                var allpass = true;
+                for (var i=0; i<tests.length; i++) {
+                    var t = tests[i];
+                    t.result = results.specs_[i].results_.failedCount === 0;
+                    t.msg = t.result ? null : results.specs_[i].results_.items_[0].message;
 
-app.controller('mainController', function($scope){
+                    allpass = allpass && t.result;
+                }
+                callback(allpass);
+            },
+        };
+        myReporter.reportSpecStarting = angular.noop;
+        myReporter.reportSpecResults = angular.noop;
+        
+        var env = jasmine.getEnv();
+        console.log('env', env);
+        env.reporter = myReporter;
+        var suite = env.describe('d', function(){
+            angular.forEach(tests, function(t){             
+                var f = eval('function f(){' + t.content + '} f');
+                it (t.seq, f);
+            });
+        });
+        try { 
+            eval(code);
+            suite.execute(angular.noop);
+        } catch (e) {
+            angular.forEach(tests, function(t){
+                t.result = false;
+                t.msg = e;
+            });
+        }
+        
+    };
+});
+
+app.controller('TddController', function($scope, jasmineTestRunner){
     document.onkeypress = function(e){
         if (e.ctrlKey && e.charCode === 18) {
-            console.log('run tests');
             $scope.run();
         }
     };
@@ -80,7 +102,7 @@ app.controller('mainController', function($scope){
     };
 
     $scope.run = function() {
-        runTests($scope.code, $scope.testsInPlay, function(allpass){
+        jasmineTestRunner($scope.code, $scope.testsInPlay, function(allpass){
             if (allpass) {
                 if ($scope.level === $scope.tests.length) {
                     $scope.title = 'You did it! Prafo!!'
