@@ -23,12 +23,13 @@ app.factory('jasmineTestRunner', function(){
     return function(code, tests, callback){
         var myReporter = {
             reportSuiteResults: function(results){
-                console.log('results', results);
+                //console.log('results', results);
                 var allpass = true;
                 for (var i=0; i<tests.length; i++) {
                     var t = tests[i];
+                    //console.log(results.specs_[i].results_);
                     t.result = results.specs_[i].results_.failedCount === 0;
-                    t.msg = t.result ? null : results.specs_[i].results_.items_[0].message;
+                    t.msg = t.result ? null : results.specs_[i].results_.items_[i].message;
 
                     allpass = allpass && t.result;
                 }
@@ -39,11 +40,11 @@ app.factory('jasmineTestRunner', function(){
         myReporter.reportSpecResults = angular.noop;
         
         var env = jasmine.getEnv();
-        console.log('env', env);
+        //console.log('env', env);
         env.reporter = myReporter;
         var suite = env.describe('d', function(){
             angular.forEach(tests, function(t){             
-                var f = eval('function f(){' + t.content + '} f');
+                var f = eval('function f(){\n' + t.content + '\n} f');
                 it (t.seq, f);
             });
         });
@@ -71,11 +72,17 @@ app.controller('TddController', function($scope, jasmineTestRunner){
     
     $scope.title = 'Write some code and try to make the tests green!';
 
-    $scope.code = "var plus = function(a, b){ return a+b;};";
-
+    $scope.code = '';
+    
     $scope.tests = [
-        {seq: 1, content: 'expect(plus(1, 2)).toEqual(3);'},
-        {seq: 2, content: 'expect(plus(-2, 7)).toEqual(5);'}];
+        {seq: 1, content: "var myMock = mock().getter('name').build();\n\nmyMock.name('bob');\n\nexpect(myMock.name()).toBe('bob');"},
+        {seq: 2, content: "var myMock = mock().action('notify').action('reset').build();\n\nmyMock.notify();\n\nexpect(myMock.notifyWasCalled()).toBe(true);\n\nexpect(myMock.resetWasCalled()).toBe(false);"},
+        {seq: 3, content: "var mockView = mock().event('onSubmit').build();\nvar mockPresenter = mock().action('reaction').build();\n\nmockView.onSubmit(mockPresenter.reaction);\nmockView.fireonSubmit();\n\nexpect(mockPresenter.reactionWasCalled()).toBe(true);"}
+    ];
+        
+    $scope.nbLines = function(text) {
+        return text.split('\n').length + 2;
+    };
         
     $scope.level = 0;
     
@@ -105,7 +112,7 @@ app.controller('TddController', function($scope, jasmineTestRunner){
         jasmineTestRunner($scope.code, $scope.testsInPlay, function(allpass){
             if (allpass) {
                 if ($scope.level === $scope.tests.length) {
-                    $scope.title = 'You did it! Prafo!!'
+                    $scope.title = 'Good job, chief'
                 }
                 else {
                     viewOneMoreTest();

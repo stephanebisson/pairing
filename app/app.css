@@ -1,6 +1,7 @@
 .code {
     width: 100%;
-    
+    font-family: "Courier new";
+    font-weight: bold;
 }
 
 .pass {background: green;}
