@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>pairing</title>
+
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="app.css" />
+		
+        <script type="text/javascript" src="lib/jquery.js"></script>
+        <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>        
+        <script type="text/javascript" src="lib/angular.js"></script>
+		<script type="text/javascript" src="lib/jasmine/jasmine.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="TddController">
+		<div class="container">
+			<h1>{{title}}</h1>
+			<hr />
+			<div class="row-fuid">
+				<div class="span2">
+					<h3>history</h3>
+					<div class="well" 
+						ng-repeat="v in versions" 
+						ng-class="getVersionClass(v)" 
+						ng-click="selectVersion(v)">
+						{{v.ts}} ({{v.level}} tests)
+					</div>
+				</div>
+				<div class="span5">
+					<h3>code</h3>
+					<button ng-click="run()">run (ctrl+r)</button>
+					<textarea id="code" ng-model="code" class="code" rows="30"></textarea>
+				</div>
+				<div class="span4">
+					<h3>tests</h3>
+					<div class="test well" 
+						ng-repeat="test in testsInPlay" 
+						ng-class="getClass(test)" >
+						<textarea ng-model="test.content" class="code" rows="{{nbLines(test.content)}}" readonly></textarea>
+						<br/><span class="error-msg">{{test.msg}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
