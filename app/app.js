@@ -62,12 +62,6 @@ app.factory('jasmineTestRunner', function(){
 });
 
 app.controller('TddController', function($scope, jasmineTestRunner){
-    document.onkeypress = function(e){
-        if (e.ctrlKey && e.charCode === 18) {
-            $scope.run();
-        }
-    };
-    
     $scope.versions = [];
     
     $scope.title = 'Write some code and try to make the tests green!';
