@@ -1,0 +1,10 @@
+TDD Challenge
+
+Rules: 
+	- write some code to make the tests pass
+	- all green -> more points
+	- no useless code -> more points
+	
+References
+    angular: http://angularjs.org
+    jquery: http://jquery.com/

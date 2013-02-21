@@ -1,0 +1,33 @@
+DONE 
+- have a running angular app
+- run a test against the code written in the ui
+- show the results of the tc in the ui
+- write some js in the ui
+- keyboard shortcut to run the tests
+- show the tc one at a time, add one when they all pass
+- being able to win the game
+- show version history
+- do not create useless version
+- navigate through history
+
+TODO
+- host on gh-pages
+- add some test
+
+- add some data (create some interesting tdd challenges)
+
+- compute points (pass/fail, coverage)
+- choose a challenge, show only the tcs related to a given challenges
+- isolate test execution (make it impossible to mess with the page with code)
+- persist to local storage
+
+- acceptable UI
+- have a real js editor in the browser
+
+- sync to remote storage
+
+- view other people solution
+- be social
+
+????
+- record versions only when all tests pass
