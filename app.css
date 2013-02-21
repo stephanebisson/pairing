@@ -1,0 +1,13 @@
+.code {
+    width: 100%;
+    font-family: "Courier new";
+    font-weight: bold;
+}
+
+.pass {background: green;}
+.fail {border-color: red;}
+
+.error-msg {color: red;}
+
+.selected {background: yellow;}
+.not-selected {background: white;}
